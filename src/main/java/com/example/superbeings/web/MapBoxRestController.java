@@ -3,7 +3,6 @@ package com.example.superbeings.web;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,8 +27,7 @@ public class MapBoxRestController {
 		for (int i = 0; i < features.length; i++) {
 			ItineraryVO itineraryVO = new ItineraryVO();
 			
-			List<String> categoryList = Arrays.asList(features[i].getProperties().getCategory().split(","));
-			categoryList = categoryList.stream().map(cl -> cl.trim()).collect(Collectors.toList());
+			List<String> categoryList = Arrays.asList(features[i].getProperties().getCategory().split(", "));
 			itineraryVO.setName(features[i].getText());
 			itineraryVO.setCategories(categoryList);
 			
